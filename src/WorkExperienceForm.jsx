@@ -1,10 +1,8 @@
 import {Collapse, Form, Input, Flex, Button} from "antd";
 import {SolutionOutlined, PlusOutlined} from "@ant-design/icons";
-import {useState} from "react";
 import ExperienceEntry from "./Components/ExperienceEntry.jsx";
 
-export function WorkExperienceForm() {
-    const [experiences, setExperiences] = useState([]);
+export function WorkExperienceForm({experiences, setExperiences}) {
 
     const addExperience = () => {
         setExperiences([...experiences, {"company": "", "position": "", "startDate": "", "endDate": "", "description" : ""}])

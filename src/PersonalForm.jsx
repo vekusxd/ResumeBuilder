@@ -1,7 +1,7 @@
 import {Collapse, Flex, Form, Input} from "antd";
 
 
-export function PersonalForm() {
+export function PersonalForm({setPersonalInfo}) {
     return <Collapse
         size="large"
         expandIconPosition={"end"}
@@ -12,26 +12,20 @@ export function PersonalForm() {
                 children: <Form
                     name="personal"
                     autoComplete="off"
-                >
-                    <Form.Item
-                        name="fullName"
-                    >
-                        <Input placeholder={"Full Name"}/>
+                    style={{fontWeight: "normal"}}>
+                    <Form.Item name="fullName">
+                        <Input placeholder={"Full Name"} onChange={e => setPersonalInfo("fullName", e.target.value)} />
                     </Form.Item>
 
-                    <Form.Item
-                        name="password"
-                    >
+                    <Form.Item name="personal-info-group">
                         <Flex gap={"middle"}>
-                            <Input placeholder={"Email"}/>
-
-                            <Input placeholder={"Phone"}/>
+                            <Input placeholder={"Email"} onChange={e => setPersonalInfo("email", e.target.value)}/>
+                            <Input placeholder={"Phone"} onChange={e => setPersonalInfo("phone", e.target.value)}/>
                         </Flex>
-
                     </Form.Item>
 
-                    <Form.Item name="remember">
-                        <Input.TextArea placeholder={"Professional Summary"}/>
+                    <Form.Item name="personal-summary">
+                        <Input.TextArea placeholder={"Professional Summary"} onChange={e => setPersonalInfo("summary", e.target.value)}/>
                     </Form.Item>
                 </Form>,
                 showArrow: true,

@@ -4,7 +4,7 @@ import {CloseOutlined} from "@ant-design/icons";
 const {Title} = Typography;
 
 const ExperienceEntry = ({onRemoveClicked, index, onType}) => {
-    return <Flex vertical gap={"middle"}>
+    return <Flex vertical gap={"middle"} style={{backgroundColor: "#f9fafb", padding: "1rem", borderRadius: "8px"}}>
         <Flex align={"center"} justify={"space-between"}>
             <Title level={4} type="secondary" style={{margin: 0}}>Experience Entry</Title>
             <Button icon={<CloseOutlined/>} onClick={onRemoveClicked}></Button>

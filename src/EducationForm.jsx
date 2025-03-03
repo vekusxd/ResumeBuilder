@@ -1,16 +1,12 @@
 import {Button, Collapse, Flex} from "antd";
 import {PlusOutlined, UserOutlined} from "@ant-design/icons";
-import {useState} from "react"
 import EducationEntry from "./Components/EducationEntry.jsx";
 
-export function EducationForm() {
-    const [educations, setEducations] = useState([]);
+export function EducationForm({educations, setEducations}) {
 
     const addEducation = () => {
         setEducations([...educations, {"place": "", "degree": "", "field": "", "date": ""}])
     }
-
-
 
     const changeEducation = (propertyName, value, index) => {
         setEducations(educations.map((edu, i) => {

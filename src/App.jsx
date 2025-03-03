@@ -4,24 +4,48 @@ import Resume from "./Resume";
 import "./App.css";
 import {useEffect, useState} from "react";
 
-let isResiseEventListenerSet = false;
+let isResizeEventListenerSet = false;
 
 const App = () => {
     const [isVertical, setIsVertical] = useState(false);
     useEffect(() => {
         if (window.innerWidth < 576) setIsVertical(true);
-        if (!isResiseEventListenerSet) {
+        if (!isResizeEventListenerSet) {
             addEventListener("resize", () => {
-                isResiseEventListenerSet = true;
+                isResizeEventListenerSet = true;
                 setIsVertical(window.innerWidth < 576);
-                console.log("less than 576px")
             })
         }
     }, []);
+
+    const [personalInfo, setPersonalInfo] = useState({
+        "fullName" : "",
+        "email" : "",
+        "phone" : "",
+        "summary" : ""
+    })
+
+    const [educations, setEducations] = useState([]);
+    const [experiences, setExperiences] = useState([]);
+
+    const updatePersonalInfo = (property, value) => {
+        setPersonalInfo({...personalInfo, [property] : value})
+    }
+
     if (isVertical) {
         return <Flex vertical gap={"middle"}>
-            <Forms/>
-            <Resume/>
+            <Forms
+                updatePersonalInfo={updatePersonalInfo}
+                educations={educations}
+                setEducations={educations}
+                experiences={experiences}
+                setExperiences={setExperiences}
+            />
+            <Resume
+                personalInfo={personalInfo}
+                educations={educations}
+                experiences={experiences}
+            />
         </Flex>
     }
     return <Splitter
@@ -32,10 +56,22 @@ const App = () => {
         layout={isVertical ? "vertical" : "horizontal"}
     >
         <Splitter.Panel defaultSize="50%" min="35%" max="70%" resizable={!isVertical}>
-            <Forms/>
+            <Forms
+                updatePersonalInfo={updatePersonalInfo}
+                educations={educations}
+                setEducations={setEducations}
+                experiences={experiences}
+                setExperiences={setExperiences}
+            />
         </Splitter.Panel>
         <Splitter.Panel resizable={!isVertical}>
-            <Resume/>
+            <Flex justify={"center"} align="center">
+                <Resume
+                    personalInfo={personalInfo}
+                    educations={educations}
+                    experiences={experiences}
+                />
+            </Flex>
         </Splitter.Panel>
     </Splitter>
 };
