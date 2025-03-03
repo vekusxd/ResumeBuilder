@@ -1,7 +1,24 @@
-import {Button, Collapse, Flex, Form, Input} from "antd";
+import {Button, Collapse, Flex} from "antd";
 import {PlusOutlined, UserOutlined} from "@ant-design/icons";
+import {useState} from "react"
+import EducationEntry from "./Components/EducationEntry.jsx";
 
 export function EducationForm() {
+    const [educations, setEducations] = useState([]);
+
+    const addEducation = () => {
+        setEducations([...educations, {"place": "", "degree": "", "field": "", "date": ""}])
+    }
+
+
+
+    const changeEducation = (propertyName, value, index) => {
+        setEducations(educations.map((edu, i) => {
+            if (i !== index) return edu;
+            return {...edu, [propertyName]: value};
+        }));
+    }
+
     return <Collapse
         size="large"
         expandIconPosition={"end"}
@@ -13,7 +30,12 @@ export function EducationForm() {
                     Education
                 </>,
                 children: <Flex vertical gap={"middle"}>
-                    <Button type={"primary"} size={"large"}><PlusOutlined/> Add Education</Button>
+                    {educations.map((edu, index) => <EducationEntry key={index} index={index} onType={changeEducation}
+                                                                    onRemoveClicked={() => {
+                                                                        setEducations(educations.filter((e, i) => index !== i));
+                                                                    }}/>)}
+                    <Button type={"primary"} size={"large"} onClick={addEducation}><PlusOutlined/> Add
+                        Education</Button>
                 </Flex>,
                 showArrow: true,
                 style: {

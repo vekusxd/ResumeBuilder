@@ -1,7 +1,22 @@
 import {Collapse, Form, Input, Flex, Button} from "antd";
 import {SolutionOutlined, PlusOutlined} from "@ant-design/icons";
+import {useState} from "react";
+import ExperienceEntry from "./Components/ExperienceEntry.jsx";
 
 export function WorkExperienceForm() {
+    const [experiences, setExperiences] = useState([]);
+
+    const addExperience = () => {
+        setExperiences([...experiences, {"company": "", "position": "", "startDate": "", "endDate": "", "description" : ""}])
+    }
+
+    const changeExperience = (propertyName, value, index) => {
+        setExperiences(experiences.map((exp, i) => {
+            if (i !== index) return exp;
+            return {...exp, [propertyName]: value};
+        }))
+    }
+
     return <Collapse
         size="large"
         expandIconPosition={"end"}
@@ -13,7 +28,11 @@ export function WorkExperienceForm() {
                     Work Experience
                 </>,
                 children: <Flex vertical gap={"middle"}>
-                    <Button  type={"primary"} size={"large"} ><PlusOutlined /> Add Experience</Button>
+                    {experiences.map((edu, index) => <ExperienceEntry key={index} index={index} onType={changeExperience}
+                                                                    onRemoveClicked={() => {
+                                                                        setExperiences(experiences.filter((e, i) => index !== i));
+                                                                    }}/>)}
+                    <Button  type={"primary"} size={"large"} onClick={addExperience}><PlusOutlined /> Add Experience</Button>
                 </Flex>,
                 showArrow: true,
                 style: {
