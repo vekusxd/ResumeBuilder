@@ -1,27 +1,22 @@
-import {Button, DatePicker, Flex, Input, Typography} from "antd";
-import {CloseOutlined} from "@ant-design/icons";
+import {Flex, Typography} from "antd";
+import {WorkExperienceIcon} from "./WorkExperienceIcon.jsx";
 
-const {Title} = Typography;
+const {Text, Title} = Typography;
 
-const ExperienceEntry = ({onRemoveClicked, index, onType}) => {
-    return <Flex vertical gap={"middle"} style={{backgroundColor: "#f9fafb", padding: "1rem", borderRadius: "8px"}}>
-        <Flex align={"center"} justify={"space-between"}>
-            <Title level={4} type="secondary" style={{margin: 0}}>Experience Entry</Title>
-            <Button icon={<CloseOutlined/>} onClick={onRemoveClicked}></Button>
+const ExperienceEntry = ({experience}) => {
+
+    const getDate = () => {
+        return `${experience.startDate.replaceAll("-", ".")} ${experience.startDate && experience.endDate && "-"} ${experience.endDate.replaceAll("-", ".")}`
+    }
+
+    return <Flex vertical>
+        <Text type={"secondary"} style={{alignSelf: "flex-end"}}>{getDate()}</Text>
+        <Flex vertical>
+            <Text strong style={{fontSize: "16px"}}>{experience.position ? experience.position : "Position"}</Text>
+            <Text strong type={"secondary"} style={{fontSize: "16px", fontWeight: "500"}}>{experience.company}</Text>
         </Flex>
-        <Flex vertical gap={"middle"} style={{fontWeight: "normal"}}>
-            <Input size={"large"} placeholder={"Company"} onChange={(e) => onType("company", e.target.value, index)}/>
-            <Input size={"large"} placeholder={"Position"} onChange={(e) => onType("position", e.target.value, index)}/>
+        <Text>{experience.description}</Text>
 
-            <Flex gap={"middle"}>
-                <DatePicker size={"large"} style={{flex: "1"}} placeholder={"Start Date"}
-                            onChange={(_, dateStr) => onType("startDate", dateStr, index)}/>
-                <DatePicker size={"large"} style={{flex: "1"}} placeholder={"End Date"}
-                            onChange={(_, dateStr) => onType("endDate", dateStr, index)}/>
-            </Flex>
-            <Input.TextArea size={"large"} placeholder={"Description"}
-                            onChange={(e) => onType("description", e.target.value, index)}/>
-        </Flex>
     </Flex>
 }
 

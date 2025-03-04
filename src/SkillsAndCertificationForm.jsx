@@ -1,5 +1,5 @@
 import {Collapse, Flex, Input} from "antd";
-import {TrophyOutlined} from "@ant-design/icons";
+import {SkillIcon} from "./Components/SkillIcon.jsx";
 
 export function SkillsAndCertificationForm() {
     return <Collapse
@@ -7,7 +7,7 @@ export function SkillsAndCertificationForm() {
         expandIconPosition={"end"}
         items={[{
             key: "1", label: <>
-                <TrophyOutlined style={{marginRight: "8px"}}/>
+                <SkillIcon style={{marginRight: "8px"}}/>
                 Skills & Certifications
             </>, children: <Flex
                 vertical

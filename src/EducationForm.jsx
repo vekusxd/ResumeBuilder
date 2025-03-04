@@ -1,9 +1,7 @@
 import {Button, Collapse, Flex} from "antd";
-import Icon, {PlusOutlined, UserOutlined} from "@ant-design/icons";
-import EducationEntry from "./Components/EducationEntry.jsx";
-import  EducationIconSource from "./assets/education.svg?react"
-
-const EducationIcon = (props) => <Icon component={EducationIconSource} {...props} />;
+import {PlusOutlined} from "@ant-design/icons";
+import EducationFormEntry from "./Components/EducationFormEntry.jsx";
+import {EducationIcon} from "./Components/EducationIcon.jsx";
 
 export function EducationForm({educations, setEducations}) {
 
@@ -26,8 +24,8 @@ export function EducationForm({educations, setEducations}) {
                 <EducationIcon style={{marginRight: "8px"}}/>
                 Education
             </>, children: <Flex vertical gap={"middle"}>
-                {educations.map((edu, index) => <EducationEntry key={index} index={index} onType={changeEducation}
-                                                                onRemoveClicked={() => {
+                {educations.map((edu, index) => <EducationFormEntry key={index} index={index} onType={changeEducation}
+                                                                    onRemoveClicked={() => {
                                                                     setEducations(educations.filter((e, i) => index !== i));
                                                                 }}/>)}
                 <Button type={"primary"} size={"large"} onClick={addEducation}><PlusOutlined/> Add

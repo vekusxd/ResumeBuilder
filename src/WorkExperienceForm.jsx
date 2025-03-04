@@ -1,9 +1,7 @@
 import {Button, Collapse, Flex} from "antd";
-import Icon, {PlusOutlined, SolutionOutlined} from "@ant-design/icons";
-import ExperienceEntry from "./Components/ExperienceEntry.jsx";
-import  WorkExperienceSource from "./assets/work.svg?react"
-
-const WorkExperienceIcon = (props) => <Icon component={WorkExperienceSource} {...props} />;
+import {PlusOutlined} from "@ant-design/icons";
+import ExperienceFormEntry from "./Components/ExperienceFormEntry.jsx";
+import {WorkExperienceIcon} from "./Components/WorkExperienceIcon.jsx";
 
 export function WorkExperienceForm({experiences, setExperiences}) {
 
@@ -32,8 +30,8 @@ export function WorkExperienceForm({experiences, setExperiences}) {
                 <WorkExperienceIcon style={{marginRight: "8px"}}/>
                 Work Experience
             </>, children: <Flex vertical gap={"middle"}>
-                {experiences.map((edu, index) => <ExperienceEntry key={index} index={index} onType={changeExperience}
-                                                                  onRemoveClicked={() => {
+                {experiences.map((edu, index) => <ExperienceFormEntry key={index} index={index} onType={changeExperience}
+                                                                      onRemoveClicked={() => {
                                                                       setExperiences(experiences.filter((e, i) => index !== i));
                                                                   }}/>)}
                 <Button type={"primary"} size={"large"} onClick={addExperience}><PlusOutlined/> Add Experience</Button>
