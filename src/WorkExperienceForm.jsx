@@ -1,6 +1,9 @@
 import {Button, Collapse, Flex} from "antd";
-import {PlusOutlined, SolutionOutlined} from "@ant-design/icons";
+import Icon, {PlusOutlined, SolutionOutlined} from "@ant-design/icons";
 import ExperienceEntry from "./Components/ExperienceEntry.jsx";
+import  WorkExperienceSource from "./assets/work.svg?react"
+
+const WorkExperienceIcon = (props) => <Icon component={WorkExperienceSource} {...props} />;
 
 export function WorkExperienceForm({experiences, setExperiences}) {
 
@@ -26,7 +29,7 @@ export function WorkExperienceForm({experiences, setExperiences}) {
         expandIconPosition={"end"}
         items={[{
             key: "1", label: <>
-                <SolutionOutlined style={{marginRight: "8px"}}/>
+                <WorkExperienceIcon style={{marginRight: "8px"}}/>
                 Work Experience
             </>, children: <Flex vertical gap={"middle"}>
                 {experiences.map((edu, index) => <ExperienceEntry key={index} index={index} onType={changeExperience}

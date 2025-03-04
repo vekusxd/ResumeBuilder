@@ -1,7 +1,6 @@
 import {Flex, Splitter} from "antd";
 import Forms from "./Forms";
 import Resume from "./Resume";
-import "./App.css";
 import {useEffect, useState} from "react";
 
 let isResizeEventListenerSet = false;
