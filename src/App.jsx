@@ -1,7 +1,8 @@
-import {Flex, Splitter} from "antd";
+import {Flex, FloatButton, Splitter} from "antd";
 import Forms from "./Forms";
 import Resume from "./Resume";
 import {useEffect, useState} from "react";
+import {QuestionCircleOutlined} from "@ant-design/icons";
 
 let isResizeEventListenerSet = false;
 
@@ -24,24 +25,31 @@ const App = () => {
 
     const [educations, setEducations] = useState([]);
     const [experiences, setExperiences] = useState([]);
+    const [skills, setSkills] = useState([]);
+    const [awards, setAwards] = useState("");
 
     const updatePersonalInfo = (property, value) => {
         setPersonalInfo({...personalInfo, [property]: value})
     }
 
     const form = (<Forms
-            updatePersonalInfo={updatePersonalInfo}
-            educations={educations}
-            setEducations={setEducations}
-            experiences={experiences}
-            setExperiences={setExperiences}
-        />);
+        updatePersonalInfo={updatePersonalInfo}
+        educations={educations}
+        setEducations={setEducations}
+        experiences={experiences}
+        setExperiences={setExperiences}
+        setSkills={setSkills}
+        setAwards={setAwards}
+    />);
 
     const resume = (<Resume
-            personalInfo={personalInfo}
-            educations={educations}
-            experiences={experiences}
-        />);
+        personalInfo={personalInfo}
+        educations={educations}
+        experiences={experiences}
+        skills={skills}
+        setSkills={setSkills}
+        awards={awards}
+    />);
 
     if (isVertical) {
         return <Flex vertical gap={"middle"}>
@@ -53,8 +61,7 @@ const App = () => {
         style={{
             minHeight: "100vh",
         }}
-        layout={isVertical ? "vertical" : "horizontal"}
-    >
+        layout={isVertical ? "vertical" : "horizontal"}>
         <Splitter.Panel defaultSize="50%" min="35%" max="70%" resizable={!isVertical}>
             {form}
         </Splitter.Panel>
@@ -63,7 +70,9 @@ const App = () => {
                 {resume}
             </Flex>
         </Splitter.Panel>
+
     </Splitter>
+
 };
 
 export default App;

@@ -20,7 +20,7 @@ export function PersonalForm({setPersonalInfo}) {
                            onChange={e => setPersonalInfo("phone", e.target.value)}/>
                 </Flex>
 
-                <Input.TextArea size={"large"} placeholder={"Professional Summary"}
+                <Input.TextArea size={"large"} autoSize={{minRows: 3}}  placeholder={"Professional Summary"}
                                 onChange={e => setPersonalInfo("summary", e.target.value)}/>
             </Flex>, showArrow: true, style: {
                 fontWeight: 600

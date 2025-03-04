@@ -19,7 +19,7 @@ const ExperienceFormEntry = ({onRemoveClicked, index, onType}) => {
                 <DatePicker size={"large"} style={{flex: "1"}} placeholder={"End Date"}
                             onChange={(_, dateStr) => onType("endDate", dateStr, index)}/>
             </Flex>
-            <Input.TextArea size={"large"} placeholder={"Description"}
+            <Input.TextArea autoSize={{minRows: 3}} size={"large"} placeholder={"Description"}
                             onChange={(e) => onType("description", e.target.value, index)}/>
         </Flex>
     </Flex>
