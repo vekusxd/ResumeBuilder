@@ -1,38 +1,30 @@
-import {Collapse, Flex, Form, Input} from "antd";
+import {Collapse, Flex, Input} from "antd";
 
 
 export function PersonalForm({setPersonalInfo}) {
     return <Collapse
         size="large"
         expandIconPosition={"end"}
-        items={[
-            {
-                key: "1",
-                label: "Personal Information",
-                children: <Form
-                    name="personal"
-                    autoComplete="off"
-                    style={{fontWeight: "normal"}}>
-                    <Form.Item name="fullName">
-                        <Input placeholder={"Full Name"} onChange={e => setPersonalInfo("fullName", e.target.value)} />
-                    </Form.Item>
+        items={[{
+            key: "1", label: "Personal Information", children: <Flex
+                vertical
+                gap={"middle"}
+                style={{fontWeight: "normal"}}>
+                <Input size={"large"} placeholder={"Full Name"}
+                       onChange={e => setPersonalInfo("fullName", e.target.value)}/>
 
-                    <Form.Item name="personal-info-group">
-                        <Flex gap={"middle"}>
-                            <Input placeholder={"Email"} onChange={e => setPersonalInfo("email", e.target.value)}/>
-                            <Input placeholder={"Phone"} onChange={e => setPersonalInfo("phone", e.target.value)}/>
-                        </Flex>
-                    </Form.Item>
+                <Flex gap={"middle"}>
+                    <Input size={"large"} placeholder={"Email"}
+                           onChange={e => setPersonalInfo("email", e.target.value)}/>
+                    <Input size={"large"} placeholder={"Phone"}
+                           onChange={e => setPersonalInfo("phone", e.target.value)}/>
+                </Flex>
 
-                    <Form.Item name="personal-summary">
-                        <Input.TextArea placeholder={"Professional Summary"} onChange={e => setPersonalInfo("summary", e.target.value)}/>
-                    </Form.Item>
-                </Form>,
-                showArrow: true,
-                style: {
-                    fontWeight: 600
-                }
-            },
-        ]}
+                <Input.TextArea size={"large"} placeholder={"Professional Summary"}
+                                onChange={e => setPersonalInfo("summary", e.target.value)}/>
+            </Flex>, showArrow: true, style: {
+                fontWeight: 600
+            }
+        },]}
     />;
 }

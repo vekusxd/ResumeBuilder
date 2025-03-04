@@ -18,26 +18,20 @@ export function EducationForm({educations, setEducations}) {
     return <Collapse
         size="large"
         expandIconPosition={"end"}
-        items={[
-            {
-                key: "1",
-                label: <>
-                    <UserOutlined style={{marginRight: "8px"}}/>
-                    Education
-                </>,
-                children: <Flex vertical gap={"middle"}>
-                    {educations.map((edu, index) => <EducationEntry key={index} index={index} onType={changeEducation}
-                                                                    onRemoveClicked={() => {
-                                                                        setEducations(educations.filter((e, i) => index !== i));
-                                                                    }}/>)}
-                    <Button type={"primary"} size={"large"} onClick={addEducation}><PlusOutlined/> Add
-                        Education</Button>
-                </Flex>,
-                showArrow: true,
-                style: {
-                    fontWeight: 600
-                }
-            },
-        ]}
+        items={[{
+            key: "1", label: <>
+                <UserOutlined style={{marginRight: "8px"}}/>
+                Education
+            </>, children: <Flex vertical gap={"middle"}>
+                {educations.map((edu, index) => <EducationEntry key={index} index={index} onType={changeEducation}
+                                                                onRemoveClicked={() => {
+                                                                    setEducations(educations.filter((e, i) => index !== i));
+                                                                }}/>)}
+                <Button type={"primary"} size={"large"} onClick={addEducation}><PlusOutlined/> Add
+                    Education</Button>
+            </Flex>, showArrow: true, style: {
+                fontWeight: 600
+            }
+        },]}
     />;
 }
